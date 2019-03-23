@@ -1,16 +1,21 @@
-  if (document.readyState !== 'loading') {
-    initialize();
-  } else {
-    document.addEventListener('DOMContentLoaded', function () {
-      initialize();
-    });
-  }
+document.addEventListener('DOMContentLoaded', function () {
+  initialize();
+}, false);
 
-  function initialize() {
-    document.getElementById("game").style.display = "none!important";
-  }
+function initialize() {
+  showSplash();
+}
 
-  function enter() {
-    document.getElementById("splash").style.display = "none";
-    document.getElementById("game").style.display = "block";
-  }
+function enter() {
+  showGame();
+}
+
+function showSplash() {
+  document.getElementById("splash").style.display = "block";
+  document.getElementById("game").style.display = "none";
+}
+
+function showGame() {
+  document.getElementById("splash").style.display = "none";
+  document.getElementById("game").style.display = "block";  
+}
