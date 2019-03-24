@@ -3,6 +3,8 @@ var questionCount = 1;
 var startTime;
 var actualTweetResults;
 var fakeTweetResults;
+var fakeTweetResultsData;
+var numCorrect = 0;
 var totalQuestions = 5;
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -37,7 +39,7 @@ function showResults() {
   document.getElementById("splash").style.display = "none";
   document.getElementById("game").style.display = "none";
   document.getElementById("results").style.display = "block";
-  document.getElementById("results-text").innerHTML = "Congratulations, game finished. You scored " + score.toFixed(0) + "!";
+  document.getElementById("results-text").innerHTML = "Congratulations, game finished. You scored " + score.toFixed(0) + "!" + " \You got " + numCorrect + " correct out of " + totalQuestions + " total questions.";
 }
 
 function restart() {
@@ -49,6 +51,7 @@ function restart() {
 function resetValues() {
   score = 0;
   questionCount = 1;
+  numCorrect = 0;
   startTime = Date.now();
 }
 
@@ -60,6 +63,7 @@ function answer(button) {
 
   if (button.classList.contains("right")) {
     score += currentScore;
+    numCorrect++;
   }
   var button1 = document.getElementById("answer1");
   var button2 = document.getElementById("answer2");
@@ -76,7 +80,7 @@ function answer(button) {
 
 function updateScoreText() {
   var scoreText = document.getElementById("score");
-  scoreText.innerHTML = "Score: " + score.toFixed(0);
+  scoreText.innerHTML = score.toFixed(0);
   var questionText = document.getElementById("question-num");
   questionText.innerHTML = "Question " + questionCount + " Of " + totalQuestions;
 }
@@ -104,17 +108,17 @@ function setUpButtons() {
   //Getting actual tweets
   var randomTweetNum = getRandomArbitrary(1, actualTweetResults.data.length);
   randomTweetNum = Math.floor(randomTweetNum);
-  
+
   //Getting fake tweets
   var randomFakeTweetNum = getRandomArbitrary(1, fakeTweetResults.data.length);
   randomFakeTweetNum = Math.floor(randomFakeTweetNum);
-  
+
   var realTweet = actualTweetResults.data[randomTweetNum][4];
   var fakeTweet = fakeTweetResults.data[randomFakeTweetNum][0];
   fakeTweet = removeWhiteSpaces(fakeTweet);
-  
-//  console.log(fakeTweetResults.data[2][0]);
-//  console.log("text: " + actualTweetResults.data[randomTweetNum][4]);
+
+  //  console.log(fakeTweetResults.data[2][0]);
+  //  console.log("text: " + actualTweetResults.data[randomTweetNum][4]);
   resetButtons(realTweet, fakeTweet);
 }
 
@@ -140,7 +144,7 @@ function parseFakeTweets() {
       parseFakeTweetData(results2);
     }
   });
-  
+
 }
 
 function parseTweetData(results) {
@@ -149,6 +153,7 @@ function parseTweetData(results) {
 
 function parseFakeTweetData(results2) {
   fakeTweetResults = results2;
+  fakeTweetResultsData = results2.data;
 }
 
 function getRandomArbitrary(min, max) {
