@@ -2,6 +2,7 @@ var score = 0;
 var questionCount = 1;
 var startTime;
 var actualTweetResults;
+var fakeTweetResults;
 var totalQuestions = 5;
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -11,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function initialize() {
   showSplash();
   parseLocalTweets();
+  parseFakeTweets();
 }
 
 function enter() {
@@ -64,10 +66,7 @@ function answer(button) {
   button1.classList.remove("right");
   button2.classList.remove("right");
 
-
-  console.log(questionCount);
   if (questionCount === totalQuestions) {
-    console.log("done" + questionCount + totalQuestions);
     showResults();
   }
   questionCount++;
@@ -102,16 +101,29 @@ function resetButtons(answerText1, answerText2) {
 }
 
 function setUpButtons() {
+  //Getting actual tweets
   var randomTweetNum = getRandomArbitrary(1, actualTweetResults.data.length);
   randomTweetNum = Math.floor(randomTweetNum);
-  console.log("text: " + actualTweetResults.data[randomTweetNum][4]);
-  resetButtons(actualTweetResults.data[randomTweetNum][4], "FIXME");
+  
+  //Getting fake tweets
+  var randomFakeTweetNum = getRandomArbitrary(1, fakeTweetResults.data.length);
+  randomFakeTweetNum = Math.floor(randomFakeTweetNum);
+  
+  var realTweet = actualTweetResults.data[randomTweetNum][4];
+  var fakeTweet = fakeTweetResults.data[randomFakeTweetNum][0];
+  fakeTweet = removeWhiteSpaces(fakeTweet);
+  
+//  console.log(fakeTweetResults.data[2][0]);
+//  console.log("text: " + actualTweetResults.data[randomTweetNum][4]);
+  resetButtons(realTweet, fakeTweet);
+}
+
+function removeWhiteSpaces(text) {
+  return text.replace(/\s+/g, " ");
 }
 
 function parseLocalTweets() {
-  //  var file = document.getElementById('myDOMElementId').files[0];
   var url = "./resources/trumptweets.csv";
-  //  var file = new File("resources/trumptweets.csv");
   var parsedTweets = Papa.parse(url, {
     download: true,
     complete: function (results) {
@@ -120,8 +132,23 @@ function parseLocalTweets() {
   });
 }
 
+function parseFakeTweets() {
+  var url = "./resources/faketweets.csv";
+  var parsedTweets = Papa.parse(url, {
+    download: true,
+    complete: function (results2) {
+      parseFakeTweetData(results2);
+    }
+  });
+  
+}
+
 function parseTweetData(results) {
   actualTweetResults = results;
+}
+
+function parseFakeTweetData(results2) {
+  fakeTweetResults = results2;
 }
 
 function getRandomArbitrary(min, max) {
