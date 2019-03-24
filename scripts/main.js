@@ -1,7 +1,8 @@
-var score;
-var questionCount;
+var score = 0;
+var questionCount = 1;
 var startTime;
 var actualTweetResults;
+var totalQuestions = 5;
 
 document.addEventListener('DOMContentLoaded', function () {
   initialize();
@@ -14,31 +15,71 @@ function initialize() {
 
 function enter() {
   showGame();
-  resetButtons();
+  updateScoreText();
 }
 
 function showSplash() {
   document.getElementById("splash").style.display = "block";
   document.getElementById("game").style.display = "none";
+  document.getElementById("results").style.display = "none";
 }
 
 function showGame() {
   document.getElementById("splash").style.display = "none";
   document.getElementById("game").style.display = "block";
+  document.getElementById("results").style.display = "none";
   setUpButtons();
 }
 
+function showResults() {
+  document.getElementById("splash").style.display = "none";
+  document.getElementById("game").style.display = "none";
+  document.getElementById("results").style.display = "block";
+  document.getElementById("results-text").innerHTML = "Congratulations, game finished. You scored " + score.toFixed(0) + "!";
+}
+
+function restart() {
+  resetValues();
+  showGame();
+  updateScoreText();
+}
+
+function resetValues() {
+  score = 0;
+  questionCount = 1;
+  startTime = Date.now();
+}
+
 function answer(button) {
-  console.log(button.innerHTML);
   var currentTime = Date.now();
   var timeDiff = currentTime - startTime;
-  var scoreText = document.getElementById("score");
-  console.log("timeDiff: " + timeDiff);
   var currentScore = 5000 / ((0.03 * timeDiff) + 5);
-  score += currentScore;
-  console.log("score: " + currentScore);
-  scoreText.innerHTML = "Score: " + score;
+  currentScore += 300;
+
+  if (button.classList.contains("right")) {
+    score += currentScore;
+  }
+  var button1 = document.getElementById("answer1");
+  var button2 = document.getElementById("answer2");
+  button1.classList.remove("right");
+  button2.classList.remove("right");
+
+
+  console.log(questionCount);
+  if (questionCount === totalQuestions) {
+    console.log("done" + questionCount + totalQuestions);
+    showResults();
+  }
+  questionCount++;
+  updateScoreText();
   setUpButtons();
+}
+
+function updateScoreText() {
+  var scoreText = document.getElementById("score");
+  scoreText.innerHTML = "Score: " + score.toFixed(0);
+  var questionText = document.getElementById("question-num");
+  questionText.innerHTML = "Question " + questionCount + " Of " + totalQuestions;
 }
 
 function resetButtons(answerText1, answerText2) {
@@ -50,9 +91,11 @@ function resetButtons(answerText1, answerText2) {
   if (randomNum > 0.5) {
     button1.innerHTML = answerText1;
     button2.innerHTML = answerText2;
+    button2.classList.add("right");
   } else {
     button1.innerHTML = answerText2;
     button2.innerHTML = answerText1;
+    button1.classList.add("right");
   }
 
   startTime = Date.now();

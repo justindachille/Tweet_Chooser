@@ -6,7 +6,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/core.js"></script>
 -->
-
+  <link href='https://fonts.googleapis.com/css?family=Karla:400,400italic,900
+' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Martel:400,400italic,900' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:300' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:700,900' rel='stylesheet' type='text/css'>
@@ -15,7 +16,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   <!--PapaParse-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.6.3/papaparse.js"></script>
-  
+
   <!--custom scripts-->
   <script src="scripts/main.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css">
@@ -32,13 +33,22 @@
 
     <div id="game">
       <h3 id="score">Score: </h3>
+      <h5 id="question-num">Question 1 of 5</h5>
       <div class="row">
         <a class="button5 col-sm answer-choice" onclick="answer(this)" id="answer1">Answer #1</a>
-        
+
         <a class="button5 col-sm answer-choice" onclick="answer(this)" id="answer2">Answer #2</a>
-           </div>
       </div>
-      <p><a href="https://en.wikipedia.org/wiki/Antoine_de_Saint-Exup%C3%A9ry" target="_blank">LEARN MORE</a></p>
     </div>
+
+    <div id="results">
+      <h4 id="results-text"> </h4>
+
+      <a class="button5 d-flex justify-content-center" onclick="restart()">Retry</a>
+
+    </div>
+
+    <p><a href="https://en.wikipedia.org/wiki/Antoine_de_Saint-Exup%C3%A9ry" target="_blank">LEARN MORE</a></p>
+  </div>
 
 </html>
