@@ -1,6 +1,5 @@
 var score = 0;
 var startTime;
-var scoreText;
 
 document.addEventListener('DOMContentLoaded', function () {
   initialize();
@@ -8,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function initialize() {
   showSplash();
-  scoreText = document.getElementById("score");
+  parseLocalTweets();
 }
 
 function enter() {
@@ -30,10 +29,9 @@ function answer(button) {
   console.log(button.innerHTML);
   var currentTime = Date.now();
   var timeDiff = currentTime - startTime;
-  scoreText = document.getElementById("score");
-  
-  var currentScore = 5000 / ((timeDiff / 1000) + 5);
-  currentScore *= 100;
+  var scoreText = document.getElementById("score");
+  console.log("timeDiff: " + timeDiff);
+  var currentScore = 5000 / ((0.03* timeDiff) + 5);
   score += currentScore;
   console.log("score: " + currentScore);
   scoreText.innerHTML = "Score: " + score;
@@ -44,4 +42,9 @@ function resetButtons() {
   var button1 = document.getElementById("answer1");
   var button2 = document.getElementById("answer2");
   startTime = Date.now();
+}
+
+function parseLocalTweets() {
+  var parsedTweets = Papa.parse("resources/trumptweets.csv", config);
+  console.log(parsedTweets);
 }
