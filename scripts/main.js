@@ -1,4 +1,5 @@
-var score = 0;
+var score;
+var questionCount;
 var startTime;
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -45,13 +46,19 @@ function resetButtons() {
 }
 
 function parseLocalTweets() {
-//  var file = document.getElementById('myDOMElementId').files[0];
+  //  var file = document.getElementById('myDOMElementId').files[0];
   var url = "./resources/trumptweets.csv";
-//  var file = new File("resources/trumptweets.csv");
+  //  var file = new File("resources/trumptweets.csv");
   var parsedTweets = Papa.parse(url, {
     download: true,
     complete: function (results) {
+      for (var i in results.data) {
+        console.log(results.data[i][4]);
+      }
+      parseTweetData(results);
       console.log("Finished:", results.data);
     }
   });
 }
+
+function parseTweetData(results) {}
