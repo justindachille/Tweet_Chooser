@@ -1,6 +1,7 @@
 body {
   background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
   height: 100%;
+  width: 100%;
 }
 
 h1 {
@@ -33,7 +34,6 @@ h4 {
   text-align: center;
 }
 
-
 h5 {
   color: #272623;
   font-family: 'Karla';
@@ -56,6 +56,24 @@ p {
   text-transform: uppercase;
 }
 
+a.answer-choice {
+  padding: 20px !important;
+  margin-top: 40px !important;
+  margin-left: 3vw !important;
+  background-color: green;
+  -webkit-user-select: none;
+  /* Safari */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* IE10+/Edge */
+  user-select: none;
+  /* Standard */
+  /*  padding-top: 50px!important;*/
+  /*  margin-top: 40px!important;*/
+  margin-right: 3vw;
+}
+
 p:before {
   background: #56bba7;
   content: '';
@@ -66,7 +84,7 @@ p:before {
 }
 
 a {
-/*  color: #56bba7;*/
+  /*  color: #56bba7;*/
   color: #2696dd;
   letter-spacing: 3px;
   text-decoration: none;
@@ -79,51 +97,40 @@ a {
   z-index: 1;
 }
 
-a.answer-choice {
-  padding: 20px!important;
-  margin-top: 40px!important;
-  margin-left: 40px!important;
-  -webkit-user-select: none; /* Safari */        
--moz-user-select: none; /* Firefox */
--ms-user-select: none; /* IE10+/Edge */
-user-select: none; /* Standard */
-/*  padding-top: 50px!important;*/
-/*  margin-top: 40px!important;*/
-}
-
 a.top {
-  margin-top: 40px!important;
+  margin-top: 40px !important;
 }
 
 a.left {
-  margin-left: 40px!important;
+  margin-left: 40px !important;
 }
 
 a.right {
-  margin-right: 40px!important;
+  margin-right: 40px !important;
 }
 
 a.bottom {
-  margin-bottom: 40px!important;
+  margin-bottom: 40px !important;
 }
 
 a.top {
-  margin-top: 40px!important;
+  margin-top: 40px !important;
 }
 
 a.button5 {
   display: inline-block;
   padding: 0.46em 1.6em;
-  border: 0.1em solid #000000;
-  margin: 0 0.2em 0.2em 0;
+  /* border: 0.1em solid #000000; */
+  margin-left: 20vw;
+  width: 60vw;
   border-radius: 0.3em;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
   text-decoration: none;
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
   color: #000000;
   text-shadow: 0 0.04em 0.04em rgba(0, 0, 0, 0.35);
-/*  background-color: #42cc8c;*/
+  /*  background-color: #42cc8c;*/
   background-color: #2696dd;
   text-align: center;
   vertical-align: middle;
@@ -133,7 +140,9 @@ a.button5 {
 a.button5:hover {
   text-shadow: 0 0 2em rgba(255, 255, 255, 1);
   color: #FFFFFF;
-  border-color: #FFFFFF;
+  background-color: #3ea7e8;
+  transition: 0.3s;
+  /* border-color: #FFFFFF; */
 }
 
 @media all and (max-width:30em) {
@@ -158,7 +167,7 @@ a.button5:hover {
 }
 
 #logo:after {
-  content:"Trump-Guessr";
+  content: "Trump-Guessr";
   position: absolute;
   text-align: center;
   left: -4px;
@@ -187,32 +196,27 @@ input[type='checkbox'] {
 
 .lbl-toggle {
   display: block;
-
   font-weight: bold;
   font-family: monospace;
   font-size: 1.2rem;
   text-transform: uppercase;
   text-align: center;
-
   padding: 1rem;
-
   color: #FFFFFF;
-  background: #42CC8C;
-
+  background: #5eb1e5;
+  ;
   cursor: pointer;
-
   border-radius: 7px;
   transition: all 0.25s ease-out;
 }
 
 .lbl-toggle:hover {
-  color: #7C5A0B;
+  background-color: #6abbed;
 }
 
 .lbl-toggle::before {
   content: ' ';
   display: inline-block;
-
   border-top: 5px solid transparent;
   border-bottom: 5px solid transparent;
   border-left: 5px solid currentColor;
@@ -222,7 +226,7 @@ input[type='checkbox'] {
   transition: transform .2s ease-out;
 }
 
-.toggle:checked + .lbl-toggle::before {
+.toggle:checked+.lbl-toggle::before {
   transform: rotate(90deg) translateX(-3px);
 }
 
@@ -232,17 +236,17 @@ input[type='checkbox'] {
   transition: max-height .25s ease-in-out;
 }
 
-.toggle:checked + .lbl-toggle + .collapsible-content {
+.toggle:checked+.lbl-toggle+.collapsible-content {
   max-height: 350px;
 }
 
-.toggle:checked + .lbl-toggle {
+.toggle:checked+.lbl-toggle {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
 
 .collapsible-content .content-inner {
-  background: #7bffbc;
+  background: #5eb1e5;
   border-bottom: 1px solid rgba(250, 224, 66, .45);
   border-bottom-left-radius: 7px;
   border-bottom-right-radius: 7px;
