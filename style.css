@@ -80,7 +80,15 @@ a {
 
 a.answer-choice {
   padding: 20px!important;
+  -webkit-user-select: none; /* Safari */        
+-moz-user-select: none; /* Firefox */
+-ms-user-select: none; /* IE10+/Edge */
+user-select: none; /* Standard */
 /*  padding-top: 50px!important;*/
+/*  margin-top: 40px!important;*/
+}
+
+a.answer-choice-top {
   margin-top: 40px!important;
 }
 

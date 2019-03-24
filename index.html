@@ -38,16 +38,28 @@
       <a class="button5 d-flex justify-content-center" onclick="enter()">Enter</a>
     </div>
 
-    <div id="game">
+    <div id="score-div">
       <h3>Score: </h3>
       <div class="d-flex justify-content-center">
         <div id="score" class="odometer odometer-theme-plaza"></div>
       </div>
+    </div>
+
+    <div id="game">
       <h5 id="question-num">Question 1 of 5</h5>
       <div class="row">
-        <a class="button5 col-sm answer-choice" onclick="answer(this)" id="answer1">Answer #1</a>
 
-        <a class="button5 col-sm answer-choice" onclick="answer(this)" id="answer2">Answer #2</a>
+        <a class="button5 col-sm answer-choice answer-choice-top" onclick="answer(this)" id="answer1">Answer #1</a>
+
+        <a class="button5 col-sm answer-choice answer-choice-top" onclick="answer(this)" id="answer2">Answer #2</a>
+
+      </div>
+      <div class="row">
+
+        <a class="button5 col-sm answer-choice" onclick="answer(this)" id="answer3">Answer #3</a>
+
+        <a class="button5 col-sm answer-choice" onclick="answer(this)" id="answer4">Answer #4</a>
+
       </div>
     </div>
 
