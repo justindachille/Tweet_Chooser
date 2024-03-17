@@ -167,7 +167,7 @@ a.button5:hover {
 }
 
 #logo:after {
-  content: "Trump-Guessr";
+  content: "Tweet-Guessr";
   position: absolute;
   text-align: center;
   left: -4px;
